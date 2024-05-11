@@ -25,5 +25,10 @@ class DatabaseSeeder extends Seeder
             'profile_photo_path' => null,
             'current_team_id' => null,
         ]);
+
+        $this->call([
+            CategorySeeder::class,
+            ProductSeeder::class,
+        ]);
     }
 }
