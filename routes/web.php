@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Livewire\Product;
 use App\Livewire\Category;
+use App\Livewire\CategoryCreate;
+use App\Livewire\CategoryEdit;
+use App\Livewire\Product;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,4 +21,6 @@ Route::middleware([
 
     Route::get('/product', Product::class)->name('product.index');
     Route::get('/category', Category::class)->name('category.index');
+    Route::get('/category/create', CategoryCreate::class)->name('category.create');
+    Route::get('/category/edit/{category}', CategoryEdit::class)->name('category.edit');
 });

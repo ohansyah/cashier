@@ -1,0 +1,13 @@
+{
+    "success": "Sukses",
+    "success_add": "Sukses Menambahkan",
+    "success_edit": "Sukses Memperbarui",
+    "failed": "Gagal",
+
+    "category": "Kategori",
+    "category_add": "Tambah Kategori Baru",
+    "category_edit": "Edit Kategori",
+    "category_delete": "Hapus Kategori",
+
+    "product": "Produk"
+}
