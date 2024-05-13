@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Product;
+use App\Livewire\Category;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,4 +18,5 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/product', Product::class)->name('product.index');
+    Route::get('/category', Category::class)->name('category.index');
 });

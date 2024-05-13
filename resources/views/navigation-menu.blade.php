@@ -18,6 +18,9 @@
                     <x-nav-link href="{{ route('product.index') }}" wire:navigate :active="request()->routeIs('product.index')">
                         {{ __('Product') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('category.index') }}" wire:navigate :active="request()->routeIs('category.index')">
+                        {{ __('Category') }}
+                    </x-nav-link>
                 </div>
             </div>
 
