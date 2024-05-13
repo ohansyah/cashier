@@ -20,4 +20,6 @@ export default {
     },
 
     plugins: [forms, typography],
+
+    darkMode: 'class', // This specifies that Tailwind should look at Class elements to determine dark mode
 };
