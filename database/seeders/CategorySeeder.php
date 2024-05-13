@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Category;
+use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
 {
@@ -13,6 +12,48 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::factory()->count(10)->create();
+        $createdAt = now();
+        Category::insert([
+            [
+                'name' => 'Makanan',
+                'created_at' => $createdAt,
+                'image' => 'https://source.unsplash.com/200x200/?food',
+            ],
+            [
+                'name' => 'Minumam',
+                'created_at' => $createdAt,
+                'image' => 'https://source.unsplash.com/200x200/?food',
+            ],
+            [
+                'name' => 'Alat Tulis',
+                'created_at' => $createdAt,
+                'image' => 'https://source.unsplash.com/200x200/?food',
+            ],
+            [
+                'name' => 'Pakaian',
+                'created_at' => $createdAt,
+                'image' => 'https://source.unsplash.com/200x200/?food',
+            ],
+            [
+                'name' => 'Mainan',
+                'created_at' => $createdAt,
+                'image' => 'https://source.unsplash.com/200x200/?food',
+            ],
+            [
+                'name' => 'Furniture',
+                'created_at' => $createdAt,
+                'image' => 'https://source.unsplash.com/200x200/?food',
+            ],
+            [
+                'name' => 'Bumbu Dapur',
+                'created_at' => $createdAt,
+                'image' => 'https://source.unsplash.com/200x200/?food',
+            ],
+            [
+                'name' => 'Lainnya',
+                'created_at' => $createdAt,
+                'image' => 'https://source.unsplash.com/200x200/?food',
+            ],
+        ]);
     }
 }
