@@ -2,18 +2,65 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\Category;
+use App\Services\Session;
 use Livewire\Attributes\Validate;
-use Livewire\Form;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
-class CategoryForm extends Form
+class CategoryForm extends Component
 {
-    #[Validate('required', 'string', 'max:255')]
-    public string $name = '';
+    use WithFileUploads;
 
-    #[Validate('required', 'boolean')]
-    public bool $is_active = true;
+    public string $name;
+    public bool $is_active;
+    public $image;
+    public $imagePreview;
+    public $categoryId;
 
-    #[Validate('required', 'image', 'max:1024')]
-    public $image = null;
+    protected $rules = [
+        'name' => 'required|min:3|max:255',
+        'is_active' => 'required',
+    ];
 
+    public function mount($categoryId = null)
+    {
+        $this->categoryId = $categoryId;
+        if ($categoryId) {
+            $category = Category::findOrFail($categoryId);
+            $this->name = $category->name;
+            $this->is_active = $category->is_active;
+            $this->imagePreview = asset('storage/' . $category->image);
+        }
+    }
+
+    public function updatedImage()
+    {
+        $this->rules['image'] = 'required|image|mimes:jpeg,png,jpg|max:1024';
+        $this->validateOnly('image');
+        $this->imagePreview = $this->image->temporaryUrl();
+    }
+
+    public function save()
+    {
+        $this->validate();
+
+        $category = $this->categoryId ? Category::findOrFail($this->categoryId) : new Category();
+        $category->name = $this->name;
+        $category->is_active = $this->is_active;
+
+        // uptional change image
+        if ($this->image) {
+            $category->image = $this->image->store('categories', 'public');
+        }
+        $category->save();
+
+        Session::success($this->categoryId ? __('success_edit') : __('success_add') . ' ' . __('category'));
+        return redirect()->route('category.index');
+    }
+
+    public function render()
+    {
+        return view('livewire.category-form');
+    }
 }

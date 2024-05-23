@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Category;
+use App\Livewire\Forms\CategoryForm;
 use App\Livewire\CategoryCreate;
 use App\Livewire\CategoryEdit;
 use App\Livewire\Product;
@@ -21,6 +22,6 @@ Route::middleware([
 
     Route::get('/product', Product::class)->name('product.index');
     Route::get('/category', Category::class)->name('category.index');
-    Route::get('/category/create', CategoryCreate::class)->name('category.create');
-    Route::get('/category/edit/{category}', CategoryEdit::class)->name('category.edit');
+    Route::get('/category/create', CategoryForm::class)->name('category.create');
+    Route::get('/category/edit/{categoryId}', CategoryForm::class)->name('category.edit');
 });
