@@ -2,7 +2,13 @@
     "success": "Sukses",
     "success_add": "Sukses Menambahkan",
     "success_edit": "Sukses Memperbarui",
+    "success_delete": "Sukses Menghapus",
     "failed": "Gagal",
+    "failed_delete": "Gagal Menghapus",
+
+    "View": "Lihat",
+    "Edit": "Ubah",
+    "Delete": "Hapus",
 
     "category": "Kategori",
     "category_add": "Tambah Kategori Baru",
