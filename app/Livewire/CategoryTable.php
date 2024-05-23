@@ -3,13 +3,11 @@
 namespace App\Livewire;
 
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
-use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
-use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
-use Illuminate\Database\Eloquent\Builder;
 
 class CategoryTable extends DataTableComponent
 {
@@ -22,7 +20,7 @@ class CategoryTable extends DataTableComponent
 
     public function builder(): Builder
     {
-        return Category::query()->select('id','name','is_active','image');
+        return Category::query()->select('id', 'name', 'is_active', 'image');
     }
 
     public function columns(): array
@@ -50,32 +48,14 @@ class CategoryTable extends DataTableComponent
                 ->attributes(fn($row) => [
                     'class' => 'object-cover rounded-lg shadow-md w-20 h-20',
                 ]),
-            ButtonGroupColumn::make('Action')
-                ->attributes(fn($row) => [
-                    'class' => 'space-x-2'
-                ])
-                ->buttons([
-                    LinkColumn::make('Show')
-                        ->title(fn($row) => __('Show'))
-                        ->location(fn($row) => route('category.index', $row))
-                        ->attributes(fn($row) => [
-                            'class' => 'bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-2 rounded',
-                        ]),
-                    LinkColumn::make('Edit')
-                        ->title(fn($row) => __('Edit'))
-                        ->location(fn($row) => route('category.edit', $row))
-                        ->attributes(fn($row) => [
-                            'class' => 'bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-2 rounded',
-                        ]),
-                    LinkColumn::make('Delete')
-                        ->title(fn($row) => __('Delete'))
-                        ->location(fn($row) => route('category.index', $row))
-                        ->attributes(fn($row) => [
-                            'class' => 'bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 rounded',
-                        ]),
-                        
-                ])
-                
+            Column::make('Action')
+                ->label(
+                    fn($row, Column $column) => view('components.button-group')->with([
+                        'routeEdit' => route('category.edit', $row),
+                        'routeDelete' => route('category.delete', $row),
+                    ])
+                )->html(),
+
         ];
     }
 }

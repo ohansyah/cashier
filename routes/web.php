@@ -1,9 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Livewire\Category;
 use App\Livewire\Forms\CategoryForm;
-use App\Livewire\CategoryCreate;
-use App\Livewire\CategoryEdit;
 use App\Livewire\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +23,5 @@ Route::middleware([
     Route::get('/category', Category::class)->name('category.index');
     Route::get('/category/create', CategoryForm::class)->name('category.create');
     Route::get('/category/edit/{categoryId}', CategoryForm::class)->name('category.edit');
+    Route::delete('/category/delete/{categoryId}', [CategoryController::class, 'delete'])->name('category.delete');
 });
