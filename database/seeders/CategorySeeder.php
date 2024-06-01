@@ -17,42 +17,42 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Makanan',
                 'created_at' => $createdAt,
-                'image' => 'https://source.unsplash.com/200x200/?food',
+                'image' => 'categories/makanan.png',
             ],
             [
-                'name' => 'Minumam',
+                'name' => 'Minuman',
                 'created_at' => $createdAt,
-                'image' => 'https://source.unsplash.com/200x200/?food',
+                'image' => 'categories/minuman.png',
             ],
             [
                 'name' => 'Alat Tulis',
                 'created_at' => $createdAt,
-                'image' => 'https://source.unsplash.com/200x200/?food',
+                'image' => 'categories/alat-tulis.png',
             ],
             [
                 'name' => 'Pakaian',
                 'created_at' => $createdAt,
-                'image' => 'https://source.unsplash.com/200x200/?food',
+                'image' => 'categories/pakaian.png',
             ],
             [
                 'name' => 'Mainan',
                 'created_at' => $createdAt,
-                'image' => 'https://source.unsplash.com/200x200/?food',
+                'image' => 'categories/mainan.png',
             ],
             [
                 'name' => 'Furniture',
                 'created_at' => $createdAt,
-                'image' => 'https://source.unsplash.com/200x200/?food',
+                'image' => 'categories/furniture.png',
             ],
             [
                 'name' => 'Bumbu Dapur',
                 'created_at' => $createdAt,
-                'image' => 'https://source.unsplash.com/200x200/?food',
+                'image' => 'categories/bumbu.png',
             ],
             [
                 'name' => 'Lainnya',
                 'created_at' => $createdAt,
-                'image' => 'https://source.unsplash.com/200x200/?food',
+                'image' => 'categories/lainnya.png',
             ],
         ]);
     }
