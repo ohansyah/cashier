@@ -16,9 +16,10 @@
                             @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
                             <select wire:model="is_active" class="w-full p-2 border border-gray-300 rounded-lg mt-2">
-                                <option value=true>Active</option>
+                                <option value=true selected>Active</option>
                                 <option value=false>Inactive</option>
                             </select>
+                            @error('is_active') <span class="text-red-500">{{ $message }}</span> @enderror
 
                             <input type="file" wire:model="image"
                                 class="w-full p-2 border border-gray-300 rounded-lg mt-2">
