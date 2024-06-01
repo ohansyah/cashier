@@ -16,8 +16,8 @@
                             @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
                             <select wire:model="is_active" class="w-full p-2 border border-gray-300 rounded-lg mt-2">
-                                <option value=true selected>Active</option>
-                                <option value=false>Inactive</option>
+                                <option selected value=1>Active</option>
+                                <option value=0>Inactive</option>
                             </select>
                             @error('is_active') <span class="text-red-500">{{ $message }}</span> @enderror
 

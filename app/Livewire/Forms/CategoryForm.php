@@ -13,14 +13,14 @@ class CategoryForm extends Component
     use WithFileUploads;
 
     public string $name;
-    public bool $is_active;
+    public int $is_active = 1;
     public $image;
     public $imagePreview;
     public $categoryId;
 
     protected $rules = [
         'name' => 'required|min:3|max:255',
-        'is_active' => 'required',
+        'is_active' => 'required|in:0,1',
     ];
 
     public function mount($categoryId = null)
