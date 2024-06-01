@@ -15,4 +15,15 @@ class Category extends Model
         'is_active',
         'image',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($category) {
+            $path = storage_path('app/public/' . $category->image);
+            if (file_exists($path)) {
+                unlink($path);
+            }
+        });
+    }
 }
