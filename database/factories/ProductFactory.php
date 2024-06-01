@@ -22,6 +22,8 @@ class ProductFactory extends Factory
 
         return [
             'name' => ucfirst($this->faker->word()) . ' ' . ucfirst($this->faker->word()),
+            'sku' => $this->faker->unique()->randomNumber(8),
+            'barcode' => $this->faker->unique()->randomNumber(8),
             'description' => $this->faker->text,
             'price' => $this->faker->randomNumber(2) * 100,
             'stock' => $this->faker->randomNumber(2),
