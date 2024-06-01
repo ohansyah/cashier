@@ -15,5 +15,8 @@
     "category_edit": "Edit Kategori",
     "category_delete": "Hapus Kategori",
 
-    "product": "Produk"
+    "product": "Produk",
+    "product_add": "Tambah Produk Baru",
+    "product_edit": "Edit Produk",
+    "product_delete": "Hapus Produk"
 }

@@ -20,6 +20,10 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/product', Product::class)->name('product.index');
+    Route::get('/product/create', CategoryForm::class)->name('product.create');
+    Route::get('/product/edit/{categoryId}', CategoryForm::class)->name('product.edit');
+    Route::delete('/product/delete/{categoryId}', [CategoryController::class, 'delete'])->name('product.delete');
+    
     Route::get('/category', Category::class)->name('category.index');
     Route::get('/category/create', CategoryForm::class)->name('category.create');
     Route::get('/category/edit/{categoryId}', CategoryForm::class)->name('category.edit');
