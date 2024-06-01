@@ -46,7 +46,7 @@ class CategoryTable extends DataTableComponent
                     }
                 )
                 ->attributes(fn($row) => [
-                    'class' => 'object-cover rounded-lg shadow-md w-20 h-20',
+                    'class' => 'object-cover rounded-lg shadow-md w-12 h-12',
                 ]),
             Column::make('Action')
                 ->label(
