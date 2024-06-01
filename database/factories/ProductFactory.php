@@ -27,7 +27,7 @@ class ProductFactory extends Factory
             'description' => $this->faker->text,
             'price' => $this->faker->randomNumber(2) * 100,
             'stock' => $this->faker->randomNumber(2),
-            'image' => $this->faker->imageUrl(),
+            'image' => 'products/box.png',
             'is_active' => $this->faker->boolean,
             'category_id' => $this->faker->randomElement($categoryIds),
         ];
