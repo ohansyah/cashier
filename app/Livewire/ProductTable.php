@@ -22,15 +22,12 @@ class ProductTable extends DataTableComponent
     {
         return Product::query()
             ->with('category')
-            ->select('products.image');
+            ->select('products.image', 'products.id');
     }
 
     public function columns(): array
     {
         return [
-            Column::make("Id", "id")
-                ->sortable()
-                ->searchable(),
             Column::make("SKU", "sku")
                 ->sortable()
                 ->searchable(),
