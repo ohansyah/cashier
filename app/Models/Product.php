@@ -18,6 +18,7 @@ class Product extends Model
         'is_active',
         'image',
         'category_id',
+        'description'
     ];
 
     protected static function boot()
