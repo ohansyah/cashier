@@ -50,4 +50,10 @@ class Product extends Model
             return asset('storage/' . $this->image);
         }
     }
+
+    public function getPriceFormattedAttribute()
+    {
+        return 'Rp' . number_format($this->price, 0, ',', '.');
+    }
+
 }
