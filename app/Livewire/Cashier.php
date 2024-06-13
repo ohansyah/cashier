@@ -25,7 +25,7 @@ class Cashier extends Component
 
         $this->categories = Category::all();
 
-        $products = ProductService::index($this->searchQuery)->simplePaginate(15);
+        $products = ProductService::index($this->searchQuery)->simplePaginate(18);
 
         return view('livewire.cashier', [
             'products' => $products,
