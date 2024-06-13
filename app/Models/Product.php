@@ -21,6 +21,11 @@ class Product extends Model
         'description'
     ];
 
+    protected $appends = [
+        'image_url',
+        'price_formatted'
+    ];
+
     protected static function boot()
     {
         parent::boot();
@@ -35,5 +40,14 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function getImageUrlAttribute()
+    {
+        if (filter_var($this->image, FILTER_VALIDATE_URL)) {
+            return $this->image;
+        } else {
+            return asset('storage/' . $this->image);
+        }
     }
 }
