@@ -18,18 +18,22 @@ class Product extends Model
         'is_active',
         'image',
         'category_id',
-        'description'
+        'description',
     ];
 
     protected $appends = [
         'image_url',
-        'price_formatted'
+        'price_formatted',
     ];
 
     protected static function boot()
     {
         parent::boot();
         static::deleting(function ($product) {
+            if ($product->image == 'products/box.png') {
+                return;
+            }
+
             $path = storage_path('app/public/' . $product->image);
             if (file_exists($path)) {
                 unlink($path);
