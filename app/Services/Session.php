@@ -4,15 +4,29 @@ namespace App\Services;
 
 class Session
 {
-    public static function success($message = 'success'): void
+    private static function flashMessage(string $message, string $style): void
     {
         session()->flash('flash.banner', $message);
-        session()->flash('flash.bannerStyle', 'success');
+        session()->flash('flash.bannerStyle', $style);
     }
 
-    public static function failed($message = 'failed'): void
+    public static function success(string $message = 'success'): void
     {
-        session()->flash('flash.banner', $message);
-        session()->flash('flash.bannerStyle', 'danger');
+        self::flashMessage($message, 'success');
+    }
+
+    public static function failed(string $message = 'failed'): void
+    {
+        self::flashMessage($message, 'danger');
+    }
+
+    public static function warning(string $message = 'warning'): void
+    {
+        self::flashMessage($message, 'warning');
+    }
+
+    public static function info(string $message = 'info'): void
+    {
+        self::flashMessage($message, 'info');
     }
 }
