@@ -54,7 +54,7 @@ class ProductForm extends Component
         }
 
         $this->categories = Cache::remember('categories', 60, function () {
-            return Category::active()->all();
+            return Category::active()->get();
         });
     }
 
