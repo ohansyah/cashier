@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
@@ -15,15 +16,33 @@ class Cashier extends Component
     public string $searchQuery = '';
     public $categories;
     public $selectedCategories = [];
-    public $cartItems = [
-        ['id' => 1, 'name' => 'ORI GIMBER 700ml', 'price' => 800],
-    ];
+    public $cartItems = [];
 
     public function toggleCategory($categoryId)
     {
         $this->selectedCategories = in_array($categoryId, $this->selectedCategories)
         ? array_diff($this->selectedCategories, [$categoryId])
         : array_merge($this->selectedCategories, [$categoryId]);
+    }
+
+    public function addToCart($productId)
+    {
+        $product = Product::find($productId);
+        $newItem = [
+            'id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'qty' => 1,
+        ];
+
+        $key = array_search($newItem['id'], array_column($this->cartItems, 'id'));
+        if ($key === false) {
+            $this->cartItems[] = $newItem;
+        } else {
+            $this->cartItems[$key]['qty'] += 1;
+            $this->cartItems[$key]['price'] += $product->price;
+        }
+
     }
 
     public function render()
