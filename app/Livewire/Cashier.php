@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Category;
 use App\Services\ProductService;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -31,7 +32,9 @@ class Cashier extends Component
             $this->resetPage();
         }
 
-        $this->categories = Category::all();
+        $this->categories = Cache::remember('categories', 60, function () {
+            return Category::active()->all();
+        });
 
         $products = ProductService::index($this->searchQuery)
             ->when($this->selectedCategories, function ($query) {
