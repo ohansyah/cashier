@@ -13,14 +13,28 @@
                     </div>
                 </div>
 
+                <!-- Categories -->
                 <div class="flex space-x-4 overflow-x-auto no-scrollbar">
                     @foreach ($categories as $category)
-                    <div
-                        class="flex-shrink-0 flex items-center bg-gray-200 rounded-lg p-2 hover:bg-indigo-300 transition duration-200 ease-in-out">
-                        <img src="{{ $category['image_url'] }}" alt="{{ $category['name'] }}"
-                            class="w-8 h-8 object-cover rounded-full mr-2">
+                    <button
+                        wire:click="toggleCategory({{ $category['id'] }})"
+                        wire:loading.attr="disabled"
+                        wire:target="toggleCategory({{ $category['id'] }})"
+                        @class([
+                            'flex-shrink-0 flex items-center rounded-lg p-2 transition duration-200 ease-in-out cursor-pointer',
+                            'bg-indigo-300' => in_array($category['id'], $selectedCategories),
+                            'bg-gray-200 hover:bg-indigo-300 focus:outline-none' => !in_array($category['id'], $selectedCategories),
+                        ])>
+
+                        <!-- Loading Animation -->
+                        <div wire:loading wire:target="toggleCategory({{ $category['id'] }})">
+                            @svg('css-spinner', 'w-8 h-8 animate-spin text-gray-500')
+                        </div>
+                        <div wire:loading.remove wire:target="toggleCategory({{ $category['id'] }})">
+                            <img src="{{ $category['image_url'] }}" alt="{{ $category['name'] }}"class="w-8 h-8 object-cover rounded-full mr-2">
+                        </div>
                         <span>{{ $category['name'] }}</span>
-                    </div>
+                    </button>
                     @endforeach
                 </div>
             </div>

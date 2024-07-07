@@ -2,10 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Models\Category;
 use App\Services\ProductService;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Category;
 
 class Cashier extends Component
 {
@@ -13,9 +13,17 @@ class Cashier extends Component
 
     public string $searchQuery = '';
     public $categories;
+    public $selectedCategories = [];
     public $cartItems = [
         ['id' => 1, 'name' => 'ORI GIMBER 700ml', 'price' => 800],
     ];
+
+    public function toggleCategory($categoryId)
+    {
+        $this->selectedCategories = in_array($categoryId, $this->selectedCategories)
+        ? array_diff($this->selectedCategories, [$categoryId])
+        : array_merge($this->selectedCategories, [$categoryId]);
+    }
 
     public function render()
     {
@@ -25,7 +33,11 @@ class Cashier extends Component
 
         $this->categories = Category::all();
 
-        $products = ProductService::index($this->searchQuery)->simplePaginate(18);
+        $products = ProductService::index($this->searchQuery)
+            ->when($this->selectedCategories, function ($query) {
+                $query->whereIn('category_id', $this->selectedCategories);
+            })
+            ->simplePaginate(18);
 
         return view('livewire.cashier', [
             'products' => $products,
