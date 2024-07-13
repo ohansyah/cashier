@@ -22,16 +22,16 @@
                         wire:target="toggleCategory({{ $category['id'] }})"
                         @class([
                             'flex-shrink-0 flex items-center rounded-lg p-2 transition duration-200 ease-in-out cursor-pointer border',
-                            'bg-indigo-300' => in_array($category['id'], $selectedCategories),
-                            'bg-white hover:bg-indigo-300 focus:outline-none' => !in_array($category['id'], $selectedCategories),
+                            'border-indigo-500' => in_array($category['id'], $selectedCategories),
+                            'bg-white hover:border-indigo-500 focus:outline-none' => !in_array($category['id'], $selectedCategories),
                         ])>
 
                         <!-- Loading Animation -->
                         <div wire:loading wire:target="toggleCategory({{ $category['id'] }})">
-                            @svg('css-spinner', 'w-8 h-8 animate-spin text-gray-300')
+                            @svg('css-spinner', 'w-5 h-5 object-cover rounded-full mr-2 animate-spin text-indigo-500')
                         </div>
                         <div wire:loading.remove wire:target="toggleCategory({{ $category['id'] }})">
-                            <img src="{{ $category['image_url'] }}" alt="{{ $category['name'] }}"class="w-8 h-8 object-cover rounded-full mr-2">
+                            <img src="{{ $category['image_url'] }}" alt="{{ $category['name'] }}"class="w-5 h-5 object-cover rounded-full mr-2">
                         </div>
                         <span>{{ $category['name'] }}</span>
                     </button>
@@ -47,7 +47,7 @@
                         wire:click="addToCart({{ $product['id'] }})"
                         wire:loading.attr="disabled"
                         wire:target="addToCart({{ $product['id'] }})"
-                        class = "border p-4 rounded-lg bg-white focus:outline-none cursor-pointer hover:scale-105 transition duration-200 ease-out">
+                        class = "border p-4 rounded-lg bg-white focus:outline-none cursor-pointer hover:border-indigo-500 transition duration-200 ease-out">
                         <div>
                             <img src="{{ $product->image_url }}" alt="{{ $product['name'] }}"
                                 class="w-full h-32 object-cover">
