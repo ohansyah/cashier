@@ -22,6 +22,7 @@ class Cashier extends Component
     public $hasMorePages = true;
     public $page = 1;
     public $allProducts = [];
+    public $isOpen = false;
 
     public function toggleCategory($categoryId)
     {
@@ -39,6 +40,7 @@ class Cashier extends Component
             'id' => $product->id,
             'name' => $product->name,
             'price' => $product->price,
+            'quantity' => 1,
         ];
 
         $key = array_search($newItem['id'], array_column($this->cartItems, 'id'));
@@ -105,5 +107,15 @@ class Cashier extends Component
         return view('livewire.cashier', [
             'products' => $this->allProducts,
         ]);
+    }
+
+    public function continueCart()
+    {
+        $this->isOpen = true;
+    }
+
+    public function closeModal()
+    {
+        $this->isOpen = false;
     }
 }

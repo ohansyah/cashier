@@ -18,7 +18,7 @@
                 </div>
             </button>
 
-            <button
+            <button wire:click="continueCart"
                 class="basis-2/3 flex items-center justify-center text-white bg-indigo-500 hover:bg-indigo-800 p-2 rounded transition-all ease-in-out duration-250 border border-indigo-500 w-full">
                 <div class="flex items-center space-x-2">
                     <span>({{count($cartItems)}}) Continue</span>

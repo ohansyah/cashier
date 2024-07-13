@@ -7,6 +7,7 @@
         </div>
         
         <x-cashier-cart :cartItems="$cartItems"/>
+        <x-cashier-summary :isOpen="$isOpen" :cartItems="$cartItems"/>
 
     </div>
 </div>
