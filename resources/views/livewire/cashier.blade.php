@@ -44,8 +44,8 @@
             </div>
 
             <!-- Products -->
-            <div class="container">
-                <div class="flex flex-wrap">
+            <div class="container mb-8">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2">
                     @foreach ($products as $product)
                         <div class="flex grow justify-center items-center mb-2">
                             <button
@@ -57,7 +57,7 @@
                                     'border-indigo-500' => in_array($product['id'], $cartItemsProductIds),
                                     'hover:border-indigo-500 focus:outline-none' => !in_array($product['id'], $cartItemsProductIds),
                                 ])>
-        
+
                                 <div>
                                     <div class="w-36 h-32 flex justify-center items-center">
                                         <!-- Loading Animation -->
@@ -80,9 +80,15 @@
                 </div>
 
                 <div class="mt-4">
-                    {{ $products->links() }}
+                    @if ($hasMorePages)
+                        <div class="text-center">
+                            <!-- Loading Animation -->
+                            <div wire:loading wire:target="loadMore">
+                                @svg('css-spinner', 'w-8 h-8 object-cover rounded-full mr-2 animate-spin text-indigo-500')
+                            </div>
+                        </div>
+                    @endif
                 </div>
-
             </div>
             
         </div>
@@ -127,3 +133,15 @@
 
     </div>
 </div>
+
+<script>
+    document.addEventListener('scroll', function() {
+        if ((window.innerHeight + window.scrollY ) >= (document.body.offsetHeight)) {
+            @this.call('loadMore');
+        }
+    });
+
+    // Livewire.on('pagination:load-more', function() {
+    //     @this.nextPage();
+    // });
+</script>
