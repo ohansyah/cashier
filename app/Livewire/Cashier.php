@@ -17,6 +17,7 @@ class Cashier extends Component
     public $categories;
     public $selectedCategories = [];
     public $cartItems = [];
+    public $cartItemsProductIds = [];
 
     public function toggleCategory($categoryId)
     {
@@ -32,17 +33,23 @@ class Cashier extends Component
             'id' => $product->id,
             'name' => $product->name,
             'price' => $product->price,
-            'qty' => 1,
         ];
 
         $key = array_search($newItem['id'], array_column($this->cartItems, 'id'));
         if ($key === false) {
             $this->cartItems[] = $newItem;
         } else {
-            $this->cartItems[$key]['qty'] += 1;
-            $this->cartItems[$key]['price'] += $product->price;
+            unset($this->cartItems[$key]);
+            $this->cartItems = array_values($this->cartItems);
         }
 
+        $this->cartItemsProductIds = array_column($this->cartItems, 'id');
+    }
+
+    public function clearCart()
+    {
+        $this->cartItems = [];
+        $this->cartItemsProductIds = [];
     }
 
     public function render()
