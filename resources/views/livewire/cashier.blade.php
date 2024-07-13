@@ -4,10 +4,10 @@
         <div class="w-full">
 
             {{-- Filters --}}
-            <div class="flex items-center space-x-4 py-4 overflow-x-auto no-scrollbar">
+            <div class="sm:flex items-center space-x-4 mb-4 overflow-x-auto no-scrollbar">
 
                 {{-- Search --}}
-                <div class="flex-grow lg:flex-grow-0 lg:w-1/3">
+                <div class="mb-4 mx-4 sm:mx-0 sm:mb-0 sm:flex-grow sm:w-1/3 min-w-64">
                     <div class="relative">
                         <input wire:model.live='searchQuery' type="search" id="search" placeholder="Search..."
                             class="border-gray-300 rounded-md shadow-sm text-gray-800 pl-10 w-full">
@@ -18,7 +18,7 @@
                 </div>
 
                 <!-- Categories -->
-                <div class="flex space-x-4 overflow-x-auto no-scrollbar">
+                <div class="flex space-x-2 overflow-x-auto no-scrollbar">
                     @foreach ($categories as $category)
                     <button
                         wire:click="toggleCategory({{ $category['id'] }})"
