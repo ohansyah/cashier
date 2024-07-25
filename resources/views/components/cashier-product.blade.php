@@ -2,22 +2,15 @@
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2">
         @foreach ($products as $product)
         <div class="flex grow justify-center items-center mb-2">
-            <button wire:click="addToCart({{ $product['id'] }})" wire:loading.attr="disabled"
-                wire:target="addToCart({{ $product['id'] }})"
-                @class([ 'border p-4 rounded-lg bg-white focus:outline-none cursor-pointer transition duration-200 ease-out shadow-md overflow-hidden'
-                , 'border-indigo-500'=> in_array($product['id'], $cartItemsProductIds),
-                'hover:border-indigo-500 focus:outline-none' => !in_array($product['id'], $cartItemsProductIds),
-                ])>
+            <button
+                class="border p-4 rounded-lg bg-white focus:outline-none cursor-pointer transition duration-200 ease-out shadow-md overflow-hidden hover:border-indigo-500"
+                :class="{ 'border-indigo-500 shadow-lg shadow-indigo-500': cartItems.find(item => item.id === {{ $product['id'] }}) }"
+                @click="addToCart({{ $product['id'] }}, '{{ $product['name'] }}', '{{ $product->price }}')"
+                >
 
                 <div>
                     <div class="w-36 h-32 flex justify-center items-center">
-                        <!-- Loading Animation -->
-                        <div wire:loading wire:target="addToCart({{ $product['id'] }})">
-                            @svg('css-spinner', 'w-16 h-16 object-cover animate-spin text-indigo-500')
-                        </div>
-                        <div wire:loading.remove wire:target="addToCart({{ $product['id'] }})">
-                            <img src="{{ $product->image_url }}" alt="{{ $product['name'] }}" class="object-cover">
-                        </div>
+                        <img src="{{ $product->image_url }}" alt="{{ $product['name'] }}" class="object-cover">
                     </div>
 
                     <div class="mt-2">
