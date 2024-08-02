@@ -5,7 +5,7 @@
             <button
                 class="border p-4 rounded-lg bg-white focus:outline-none cursor-pointer transition duration-200 ease-out shadow-md overflow-hidden hover:border-indigo-500"
                 :class="{ 'border-indigo-500 shadow-lg shadow-indigo-500': cartItems.find(item => item.id === {{ $product['id'] }}) }"
-                @click="addToCart({{ $product['id'] }}, '{{ $product['name'] }}', '{{ $product->price }}')"
+                @click="addToCart({{ $product['id'] }}, '{{ $product['name'] }}', '{{ $product->price }}', '{{ $product->price_formatted }}', '{{ $product->image_url }}')"
                 >
 
                 <div>

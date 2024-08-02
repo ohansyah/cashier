@@ -1,45 +1,53 @@
-<div>
+<div x-show="isShowSummary" x-transition
+    class="fixed inset-0 z-10 flex items-center justify-center bg-gray-200 bg-opacity-75 transition-opacity" 
+    role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    
+    <div @click.away="isShowSummary = false" 
+         class="relative w-full max-w-2xl p-4 bg-white rounded-lg shadow-xl transition-all">
+        
+        <div class="p-4">
+            <div class="w-full justify-center">
+                <div class="mt-3 text-center sm:mt-0 sm:text-left">
+                    <h3 id="modal-title" class="text-base font-semibold leading-6 text-gray-900">Cart List</h3>
 
-    @if($isOpen)
-    <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-
-        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
-                    @click.away="$wire.call('closeModal')">
-                    <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                        <div class="sm:flex sm:items-start">
-                            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                                <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Cart List</h3>
-
-                                <div class="mt-2">
-                                    @foreach ( $cartItems as $cartItem )
-                                    <div class="flex justify-between">
-                                        <div>
-                                            <p>{{ $cartItem['name'] }}</p>
-                                        </div>
-                                        <div>
-                                            <p>{{ $cartItem['quantity'] * $cartItem['price'] }}</p>
-                                        </div>
-                                    </div>
-
-                                    @endforeach
+                    <div class="mt-2">
+                        <template x-for="item in cartItems" :key="item.id">
+                            <div class="grid grid-cols-5 gap-3 items-center py-2 border-b justify-items-stretch" x-transition>
+                                <div class="col-span-1">
+                                    <img :src="item.imageUrl" alt="Product Image" class="object-cover rounded-lg w-12 h-12">
                                 </div>
-
+                                <div class="col-span-2">
+                                    <p x-text="item.name" class="text-gray-700"></p>
+                                </div>
+                                <div class="col-span-1 justify-self-end">
+                                    <p x-text="item.priceFormated" class="text-gray-700"></p>
+                                </div>
+                                <div class="col-span-1 justify-self-end flex items-center space-x-2">
+                                    <button @click="decreaseQuantity(item.id)" class="px-2 py-1 text-sm font-medium text-gray-700 bg-gray-200 rounded hover:bg-gray-300">
+                                        -
+                                    </button>
+                                    <p x-text="item.qty" class="text-gray-700"></p>
+                                    <button @click="increaseQuantity(item.id)" class="px-2 py-1 text-sm font-medium text-gray-700 bg-gray-200 rounded hover:bg-gray-300">
+                                        +
+                                    </button>
+                                    <button @click="deleteItem(item.id)" class="px-2 py-1 text-sm font-medium text-red-500 bg-red-100 rounded hover:bg-red-200">
+                                        @svg('heroicon-s-trash', 'w-5 h-5')
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                        <button {{-- wire:click="checkout" --}} type="button"
-                            class="inline-flex w-full justify-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-800 sm:ml-3 sm:w-auto">Deactivate</button>
-                        <button wire:click="closeModal" type="button"
-                            class="mt-3 inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm text-red-500 border border-red-500 hover:text-white hover:bg-red-500 sm:mt-0 sm:w-auto">Cancel</button>
+                        </template>
+                        
                     </div>
                 </div>
             </div>
+
+            <div class="sm:flex sm:flex-row-reverse sm:pt-4">
+                <button {{-- wire:click="checkout" --}} type="button"
+                    class="inline-flex w-full justify-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-800 sm:ml-3 sm:w-auto">Checkout</button>
+                <button @click="isShowSummary = false" type="button"
+                    class="mt-3 inline-flex w-full justify-center rounded-md border border-red-500 px-3 py-2 text-sm font-semibold text-red-500 shadow-sm hover:bg-red-500 hover:text-white sm:mt-0 sm:w-auto">Cancel</button>
+            </div>
+
         </div>
     </div>
-    @endif
-
 </div>

@@ -14,18 +14,11 @@
                 </div>
             </button>
 
-            <button wire:click="continueCart"
+            <button
+                @click="isShowSummary = true"
                 class="basis-2/3 flex items-center justify-center text-white bg-indigo-500 hover:bg-indigo-800 p-2 rounded transition-all ease-in-out duration-250 border border-indigo-500 w-full">
                 <div class="flex items-center space-x-2">
                     <span><b x-text="cartItems.length"></b> Continue</span>
-
-                    <!-- Loading Animation -->
-                    <div wire:loading wire:target="continueCart">
-                        @svg('css-spinner', 'w-5 h-5 object-cover animate-spin')
-                    </div>
-                    <div wire:loading.remove wire:target="continueCart">
-                        @svg('heroicon-s-arrow-right', 'w-5 h-5')
-                    </div>
                 </div>
             </button>
 
