@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Category;
-use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
@@ -17,12 +16,9 @@ class Cashier extends Component
     public $categories;
     public $selectedCategories = [];
     public $isFilteredCategory = false;
-    public $cartItems = [];
-    public $cartItemsProductIds = [];
     public $hasMorePages = true;
     public $page = 1;
     public $allProducts = [];
-    public $isOpen = false;
 
     public function toggleCategory($categoryId)
     {
@@ -31,33 +27,6 @@ class Cashier extends Component
         : array_merge($this->selectedCategories, [$categoryId]);
 
         $this->isFilteredCategory = true;
-    }
-
-    public function addToCart($productId)
-    {
-        $product = Product::find($productId);
-        $newItem = [
-            'id' => $product->id,
-            'name' => $product->name,
-            'price' => $product->price,
-            'quantity' => 1,
-        ];
-
-        $key = array_search($newItem['id'], array_column($this->cartItems, 'id'));
-        if ($key === false) {
-            $this->cartItems[] = $newItem;
-        } else {
-            unset($this->cartItems[$key]);
-            $this->cartItems = array_values($this->cartItems);
-        }
-
-        $this->cartItemsProductIds = array_column($this->cartItems, 'id');
-    }
-
-    public function clearCart()
-    {
-        $this->cartItems = [];
-        $this->cartItemsProductIds = [];
     }
 
     public function loadMore()
@@ -107,15 +76,5 @@ class Cashier extends Component
         return view('livewire.cashier', [
             'products' => $this->allProducts,
         ]);
-    }
-
-    public function continueCart()
-    {
-        $this->isOpen = true;
-    }
-
-    public function closeModal()
-    {
-        $this->isOpen = false;
     }
 }
