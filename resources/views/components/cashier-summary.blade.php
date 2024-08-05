@@ -1,4 +1,4 @@
-<div x-show="isShowSummary" x-transition
+<div x-cloak x-show="isShowSummary" x-transition
     class="fixed inset-0 z-10 flex items-center justify-center bg-gray-200 bg-opacity-75 transition-opacity" 
     role="dialog" aria-modal="true" aria-labelledby="modal-title">
     
