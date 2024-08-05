@@ -51,12 +51,63 @@
             </div>
 
             <div class="sm:flex sm:flex-row-reverse sm:pt-4">
-                <button {{-- wire:click="checkout" --}} type="button"
-                    class="inline-flex w-full justify-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-800 sm:ml-3 sm:w-auto">Checkout</button>
+                <button type="button"
+                    wire:loading.attr="disabled"
+                    wire:target="checkout"
+                    @click="$wire.checkout(cartItems).then((res) => {
+                        if (res) {
+                            isShowSuccess = true;
+                            clearCart();
+                        } else {
+                            isShowError = true;
+                        }
+                    })"
+
+                    class="inline-flex w-full justify-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-800 sm:ml-3 sm:w-auto">
+                    
+                    <!-- Loading Animation -->
+                    <div wire:loading wire:target="checkout">
+                        @svg('css-spinner', 'w-5 h-5 object-cover rounded-full mr-2 animate-spin text-white')
+                    </div>
+                    <div wire:loading.remove wire:target="checkout">
+                        @svg('css-shopping-cart', 'w-5 h-5 object-cover rounded-full mr-2 text-white')
+                    </div>
+                    <span>Checkout</span>
+                </button>
+
                 <button @click="isShowSummary = false" type="button"
                     class="mt-3 inline-flex w-full justify-center rounded-md border border-red-500 px-3 py-2 text-sm font-semibold text-red-500 shadow-sm hover:bg-red-500 hover:text-white sm:mt-0 sm:w-auto">Cancel</button>
             </div>
 
+        </div>
+    </div>
+</div>
+
+
+<!-- Success Modal -->
+<div x-cloak x-show="isShowSuccess" x-transition
+    class="fixed inset-0 z-10 flex items-center justify-center bg-gray-200 bg-opacity-75 transition-opacity" 
+    role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    
+    <div @click.away="isShowSuccess = false" class="relative w-full max-w-2xl p-4 bg-white rounded-lg shadow-xl transition-all">
+        <div class="flex flex-col items-center">
+            <x-heroicon-o-check-circle class="w-16 h-16 text-green-500 animate-pulse" />
+            <h2 class="mt-4 text-xl font-semibold text-green-600">Success!</h2>
+            <p class="mt-2 text-center text-gray-600">Your operation was completed successfully.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Error Modal -->
+<div x-cloak x-show="isShowError" x-transition
+    class="fixed inset-0 z-10 flex items-center justify-center bg-gray-200 bg-opacity-75 transition-opacity" 
+    role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    
+    <div @click.away="isShowError = false" class="relative w-full max-w-2xl p-4 bg-white rounded-lg shadow-xl transition-all">
+        <div class="flex flex-col items-center">
+            <x-heroicon-o-exclamation-circle class="w-16 h-16 text-red-500 animate-pulse" />
+            <h2 class="mt-4 text-xl font-semibold text-red-600">Error!</h2>
+            <p class="mt-2 text-center text-gray-600">There was an error processing your request.</p>
         </div>
     </div>
 </div>

@@ -1,6 +1,8 @@
 document.addEventListener('alpine:init', () => {
     Alpine.data('cart', () => ({
         isShowSummary: false,
+        isShowError: false,
+        isShowSuccess: false,
         cartItems: [],
         subTotal: 0,
 
@@ -44,6 +46,14 @@ document.addEventListener('alpine:init', () => {
         },
         calculateSubTotal() {
             this.subTotal = this.cartItems.reduce((acc, item) => acc + (item.price * item.qty), 0);
+        },
+        clearCart() {
+            this.isShowSummary = false;
+            this.cartItems = [];
+            this.subTotal = 0;
+        },
+        catchHandler() {
+            console.log('An error occurred during checkout');
         }
     }));
 });

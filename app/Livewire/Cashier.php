@@ -3,8 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrderProduct;
+use App\Models\Product;
 use App\Services\ProductService;
+use App\Services\Session;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -19,6 +24,7 @@ class Cashier extends Component
     public $hasMorePages = true;
     public $page = 1;
     public $allProducts = [];
+    public $cartItems = [];
 
     public function toggleCategory($categoryId)
     {
@@ -76,5 +82,56 @@ class Cashier extends Component
         return view('livewire.cashier', [
             'products' => $this->allProducts,
         ]);
+    }
+
+    public function checkout($cartItems)
+    {
+        $cartItems = collect($cartItems);
+
+        $productIds = $cartItems->pluck('id')->toArray();
+        $products = Product::select('id', 'price')
+            ->whereIn('id', $productIds)
+            ->toBase()
+            ->get();
+
+        if ($products->isEmpty()) {
+            throw new \Exception('Product not found');
+        }
+
+        DB::beginTransaction();
+        try {
+
+            $order = Order::create([
+                'user_id' => auth()->id(),
+                'total' => $cartItems->sum('total'),
+            ]);
+            $orderId = $order->id;
+
+            $orderProducts = $products->map(function ($product) use ($orderId, $cartItems) {
+                $cartItem = $cartItems->firstWhere('id', $product->id);
+                if (!$cartItem) {
+                    return null;
+                }
+
+                return [
+                    'order_id' => $orderId,
+                    'product_id' => $product->id,
+                    'quantity' => $cartItem['qty'],
+                    'price' => $product->price,
+                    'total' => $product->price * $cartItem['qty'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            })->filter();
+
+            OrderProduct::insert($orderProducts->toArray());
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return false;
+        }
+
+        return true;
     }
 }
