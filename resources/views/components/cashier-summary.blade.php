@@ -12,17 +12,15 @@
 
                     <div class="mt-2">
                         <template x-for="item in cartItems" :key="item.id">
-                            <div class="grid grid-cols-5 gap-3 items-center py-2 border-b justify-items-stretch" x-transition>
-                                <div class="col-span-1">
-                                    <img :src="item.imageUrl" alt="Product Image" class="object-cover rounded-lg w-12 h-12">
+                            <div class="grid grid-cols-6 grid-rows-2 gap-2 items-center py-2 border-b justify-items-stretch" x-transition>
+                                <div class="row-span-2 col-span-1">
+                                    <img :src="item.imageUrl" alt="Product Image" class="object-cover rounded-lg w-16 h-16">
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-3 justify-self-start">
                                     <p x-text="item.name" class="text-gray-700"></p>
                                 </div>
-                                <div class="col-span-1 justify-self-end">
+                                <div class="col-span-3 justify-self-start flex items-center space-x-2">
                                     <p x-text="item.priceFormated" class="text-gray-700"></p>
-                                </div>
-                                <div class="col-span-1 justify-self-end flex items-center space-x-2">
                                     <button @click="decreaseQuantity(item.id)" class="px-2 py-1 text-sm font-medium text-gray-700 bg-gray-200 rounded hover:bg-gray-300">
                                         -
                                     </button>
@@ -34,8 +32,19 @@
                                         @svg('heroicon-s-trash', 'w-5 h-5')
                                     </button>
                                 </div>
+                                <div class="row-span-2 col-span-2 justify-self-end">
+                                    <p x-text="formatCurrency(item.total)" class="font-semibold text-gray-700"></p>
+                                </div>
                             </div>
                         </template>
+                        <div class="grid grid-cols-3 gap-3 items-center py-2 justify-items-stretch" x-transition>
+                            <div class="col-span-1">
+                                <p class="text-gray-700">Sub Total</p>
+                            </div>
+                            <div class="col-span-2 justify-self-end">
+                                <p x-text="formatCurrency(subTotal)" class="text-xl font-semibold leading-6 text-gray-900"></p>
+                            </div>
+                        </div>
                         
                     </div>
                 </div>
