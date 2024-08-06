@@ -18,13 +18,22 @@ class Product extends Model
         'is_active',
         'image',
         'category_id',
-        'description'
+        'description',
+    ];
+
+    protected $appends = [
+        'image_url',
+        'price_formatted',
     ];
 
     protected static function boot()
     {
         parent::boot();
         static::deleting(function ($product) {
+            if ($product->image == 'products/box.png') {
+                return;
+            }
+
             $path = storage_path('app/public/' . $product->image);
             if (file_exists($path)) {
                 unlink($path);
@@ -36,4 +45,19 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function getImageUrlAttribute()
+    {
+        if (filter_var($this->image, FILTER_VALIDATE_URL)) {
+            return $this->image;
+        } else {
+            return asset('storage/' . $this->image);
+        }
+    }
+
+    public function getPriceFormattedAttribute()
+    {
+        return 'Rp' . number_format($this->price, 0, ',', '.');
+    }
+
 }

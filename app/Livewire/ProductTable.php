@@ -48,13 +48,7 @@ class ProductTable extends DataTableComponent
                 ->setView('components.boolean'),
             ImageColumn::make("Image", "image")
                 ->location(
-                    function ($row) {
-                        if (filter_var($row->image, FILTER_VALIDATE_URL)) {
-                            return $row->image;
-                        } else {
-                            return asset('storage/' . $row->image);
-                        }
-                    }
+                    fn($row) => $row->image_url
                 )
                 ->attributes(fn($row) => [
                     'class' => 'object-cover rounded-lg shadow-md w-12 h-12',

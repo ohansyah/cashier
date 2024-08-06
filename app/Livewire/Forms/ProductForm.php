@@ -5,6 +5,7 @@ namespace App\Livewire\Forms;
 use App\Models\Category;
 use App\Models\Product;
 use App\Services\Session;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -52,7 +53,9 @@ class ProductForm extends Component
             $this->imagePreview = asset('storage/' . $product->image);
         }
 
-        $this->categories = Category::where('is_active', 1)->get();
+        $this->categories = Cache::remember('categories', 60, function () {
+            return Category::active()->get();
+        });
     }
 
     public function updatedImage()
