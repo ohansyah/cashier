@@ -91,9 +91,9 @@
     
     <div @click.away="isShowSuccess = false" class="relative w-full max-w-2xl p-4 bg-white rounded-lg shadow-xl transition-all">
         <div class="flex flex-col items-center">
-            <x-heroicon-o-check-circle class="w-16 h-16 text-green-500 animate-pulse" />
-            <h2 class="mt-4 text-xl font-semibold text-green-600">Success!</h2>
-            <p class="mt-2 text-center text-gray-600">Your operation was completed successfully.</p>
+            <x-heroicon-o-check-circle class="w-24 h-24 text-green-500 animate-pulse" />
+            <h2 class="mt-4 text-xl font-semibold text-green-600">{{__('success')}}!</h2>
+            <p class="mt-2 text-center text-gray-600">{{__('success_checkout')}}</p>
         </div>
     </div>
 </div>
@@ -105,9 +105,9 @@
     
     <div @click.away="isShowError = false" class="relative w-full max-w-2xl p-4 bg-white rounded-lg shadow-xl transition-all">
         <div class="flex flex-col items-center">
-            <x-heroicon-o-exclamation-circle class="w-16 h-16 text-red-500 animate-pulse" />
-            <h2 class="mt-4 text-xl font-semibold text-red-600">Error!</h2>
-            <p class="mt-2 text-center text-gray-600">There was an error processing your request.</p>
+            <x-heroicon-o-exclamation-circle class="w-24 h-24 text-red-500 animate-pulse" />
+            <h2 class="mt-4 text-xl font-semibold text-red-600">{{__('failed')}}!</h2>
+            <p class="mt-2 text-center text-gray-600">{{__('failed_checkout')}}</p>
         </div>
     </div>
 </div>

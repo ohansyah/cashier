@@ -1,10 +1,12 @@
 {
-    "success": "Sukses",
-    "success_add": "Sukses Menambahkan",
-    "success_edit": "Sukses Memperbarui",
-    "success_delete": "Sukses Menghapus",
+    "success": "Berhasil",
+    "success_add": "Berhasil Menambahkan",
+    "success_edit": "Berhasil Memperbarui",
+    "success_delete": "Berhasil Menghapus",
+    "success_checkout": "Berhasil Membuat Pesanan Baru",
     "failed": "Gagal",
     "failed_delete": "Gagal Menghapus",
+    "failed_checkout": "Gagal Membuat Pesanan Baru",
 
     "View": "Lihat",
     "Edit": "Ubah",
