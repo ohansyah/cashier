@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('cashier.index') }}" :active="request()->routeIs('cashier.index')">
+                    <x-nav-link href="{{ route('cashier.index') }}" wire:navigate :active="request()->routeIs('cashier.index')">
                         {{ __('Cashier') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
