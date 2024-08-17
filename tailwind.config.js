@@ -9,6 +9,9 @@ export default {
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './resources/**/*.blade.php',
+        './resources/**/*.js',
+        './resources/**/*.vue',
     ],
 
     theme: {
@@ -19,5 +22,23 @@ export default {
         },
     },
 
-    plugins: [forms, typography],
+    plugins: [
+        forms,
+        typography,
+        function ({ addUtilities }) {
+            addUtilities({
+                '.no-scrollbar': {
+                    /* For WebKit-based browsers (Chrome, Safari) */
+                    '&::-webkit-scrollbar': {
+                        display: 'none',
+                    },
+                    /* For IE and Edge */
+                    '-ms-overflow-style': 'none',
+                    /* For Firefox */
+                    'scrollbar-width': 'none',
+                },
+            });
+        },],
+
+    darkMode: 'class', // This specifies that Tailwind should look at Class elements to determine dark mode
 };
