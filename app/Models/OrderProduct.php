@@ -18,6 +18,21 @@ class OrderProduct extends Model
         'total',
     ];
 
+    protected $appends = [
+        'price_formatted',
+        'total_formatted',
+    ];
+
+    public function getPriceFormattedAttribute()
+    {
+        return 'Rp' . number_format($this->price, 0, ',', '.');
+    }
+    
+    public function getTotalFormattedAttribute()
+    {
+        return 'Rp' . number_format($this->total, 0, ',', '.');
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class);
