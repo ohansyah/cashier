@@ -2,15 +2,17 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Livewire\Cashier;
 use App\Livewire\Category;
 use App\Livewire\Forms\CategoryForm;
 use App\Livewire\Forms\ProductForm;
+use App\Livewire\Order;
+use App\Livewire\OrderDetail;
 use App\Livewire\Product;
-use App\Livewire\Cashier;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('cashier.index'); 
+    return redirect()->route('cashier.index');
 });
 
 Route::middleware([
@@ -33,4 +35,7 @@ Route::middleware([
     Route::delete('/category/delete/{categoryId}', [CategoryController::class, 'delete'])->name('category.delete');
 
     Route::get('/cashier', Cashier::class)->name('cashier.index');
+
+    Route::get('/order', Order::class)->name('order.index');
+    Route::get('/order/{id}', OrderDetail::class)->name('order.show');
 });
