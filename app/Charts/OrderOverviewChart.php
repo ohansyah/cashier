@@ -2,6 +2,7 @@
 
 namespace App\Charts;
 
+use App\Models\Order;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class OrderOverviewChart
@@ -15,9 +16,16 @@ class OrderOverviewChart
 
     public function build(): \ArielMejiaDev\LarapexCharts\LineChart
     {
+        $orders = Order::selectRaw('DATE(created_at) as date, SUM(total) as total')
+            ->groupBy('date')
+            ->toBase()
+            ->get();
+
+        $dates = $orders->pluck('date')->toArray();
+        $totals = $orders->pluck('total')->toArray();
+
         return $this->chart->lineChart()
-            ->addData('Physical sales', [40, 93, 35, 42, 18, 82])
-            ->addData('Digital sales', [70, 29, 77, 28, 55, 45])
-            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
+            ->addData('Total Sales', $totals)
+            ->setXAxis($dates);
     }
 }
