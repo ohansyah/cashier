@@ -35,7 +35,7 @@ class OrderTable extends DataTableComponent
             Column::make("Total", "total")
                 ->sortable()
                 ->format(function ($value) {
-                    return 'Rp' . number_format($value, 0, ',', '.');
+                    return formatCurrency($value, 0, ',', '.');
                 }),
             Column::make("Cashier", "user.name")
                 ->sortable()

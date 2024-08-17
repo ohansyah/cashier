@@ -31,7 +31,7 @@ class DashboardController extends Controller
         $percentageOrder = round($percentageOrder);
 
         // format currency
-        $sumOrderTotalToday = 'Rp' . number_format($sumOrderTotalToday, 0, ',', '.');
+        $sumOrderTotalToday = formatCurrency($sumOrderTotalToday);
 
         return view('dashboard', [
             'card' => compact('sumOrderTotalToday', 'percentageOrderTotal', 'countOrderToday', 'percentageOrder'),

@@ -25,12 +25,12 @@ class OrderProduct extends Model
 
     public function getPriceFormattedAttribute()
     {
-        return 'Rp' . number_format($this->price, 0, ',', '.');
+        return formatCurrency($this->price, 0, ',', '.');
     }
     
     public function getTotalFormattedAttribute()
     {
-        return 'Rp' . number_format($this->total, 0, ',', '.');
+        return formatCurrency($this->total, 0, ',', '.');
     }
 
     public function product()
