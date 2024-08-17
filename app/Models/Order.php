@@ -36,7 +36,7 @@ class Order extends Model
     
     public function getTotalFormattedAttribute()
     {
-        return 'Rp' . number_format($this->total, 0, ',', '.');
+        return formatCurrency($this->total, 0, ',', '.');
     }
 
     /**
