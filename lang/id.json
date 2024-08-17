@@ -20,5 +20,8 @@
     "product": "Produk",
     "product_add": "Tambah Produk Baru",
     "product_edit": "Edit Produk",
-    "product_delete": "Hapus Produk"
+    "product_delete": "Hapus Produk",
+
+    "order": "Order",
+    "order_show": "Detail Order"
 }

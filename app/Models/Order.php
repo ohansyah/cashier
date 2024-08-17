@@ -16,11 +16,15 @@ class Order extends Model
         'total',
     ];
 
+    protected $appends = [
+        'total_formatted',
+    ];
+
     public static function boot()
     {
         parent::boot();
         static::creating(function ($order) {
-            
+
             /**
              * Generate invoice number
              * INV-YYYYMMDD-HHIISS-USERID
@@ -28,5 +32,24 @@ class Order extends Model
              */
             $order->invoice_number = 'INV-' . date('Ymd') . '-' . date('His') . '-' . $order->user_id;
         });
+    }
+    
+    public function getTotalFormattedAttribute()
+    {
+        return 'Rp' . number_format($this->total, 0, ',', '.');
+    }
+
+    /**
+     * RELATIONSHIP SECTION
+     */
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function orderProducts()
+    {
+        return $this->hasMany(OrderProduct::class);
     }
 }
