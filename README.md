@@ -1,66 +1,68 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" alt="GO-Blog" width="500">
 </p>
 
-## About Laravel
+[![PHP](https://img.shields.io/badge/PHP-%5E8.2-blue)](https://www.php.net/) [![Laravel](https://img.shields.io/badge/Laravel-%5E11.0-blue)](https://laravel.com/) [![Laravel Jetstream](https://img.shields.io/badge/Laravel_Jetstream-%5E5.1-blue)](https://jetstream.laravel.com/) [![Livewire](https://img.shields.io/badge/Livewire-%5E3.0-blue)](https://laravel-livewire.com/) [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-%5E3.0-blue)](https://tailwindcss.com/) [![Blade UI Kit (Heroicons)](https://img.shields.io/badge/Blade_UI_Kit_(Heroicons)-%5E2.3-blue)](https://blade-ui-kit.com) [![Blade CSS Icons](https://img.shields.io/badge/Blade_CSS_Icons-%5E1.4-blue)](https://github.com/khatabwedaa/blade-css-icons) [![Larapex Charts](https://img.shields.io/badge/Larapex_Charts-dev--master-blue)](https://github.com/ArielMejiaDev/larapex-charts) [![Laravel Livewire Tables](https://img.shields.io/badge/Laravel_Livewire_Tables-%5E3.2-blue)](https://github.com/rappasoft/laravel-livewire-tables)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Cashier is a web-based point-of-sale (POS) system built using the Laravel TALL stack. Designed to be simple yet powerful, this system includes key features for managing sales, orders, and products, with support for multiple users. The project uses Laravel Jetstream as a starter pack, providing authentication, team management, and other essential features.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+   
 
-## Learning Laravel
+### Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Multiuser**: Manage multiple users with different roles and permissions.
+- **Dashboard Overview**: Get a quick glance at the system's key metrics and performance.
+- **Order Chart**: Visualize orders and sales trends over time.
+- **Checkout Page**: Streamlined checkout process for completing sales.
+- **Order Summary**: Overview of the current order before finalizing the sale.
+- **List Orders**: View a comprehensive list of all orders.
+- **Detail Orders**: Drill down into the details of individual orders.
+- **Master Product**: Manage the inventory of products available for sale.
+- **Master Category**: Organize products into categories for easier management.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Installation Steps
+Follow these steps to set up your Laravel 10 project with Jetstream and Vite:
 
-## Laravel Sponsors
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/ohansyah/cashier.git
+   cd cashier
+2. **Install Composer Dependencies**
+   ```bash
+   composer install
+3. **IInstall NPM Dependencies**
+   ```bash
+   npm instal
+4. **Copy the Environment File**
+   Create a copy of the .env.example file and name it .env.
+   ```bash
+   cp .env.example .env
+5. **Generate an Application Key**
+   ```bash
+   php artisan key:generate
+6. **Configure the Database**
+   Update the .env file with your database connection details:
+   ```bash
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_database_name
+   DB_USERNAME=your_database_username
+   DB_PASSWORD=your_database_password
+7. **Run Migrations and Seed the Database**
+   ```bash
+   php artisan migrate --seed
+8. **Install and Build Vite Assets**
+   ```bash
+   npm run dev
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   # OR for production build
+   npm run prod
+9.  **Start the Laravel Development Server**
+    ```bash
+    php artisan serve
+10. **Access Your Application**
+Open your web browser and visit http://localhost:8000 to access cashier project.
