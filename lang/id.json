@@ -23,5 +23,9 @@
     "product_delete": "Hapus Produk",
 
     "order": "Order",
-    "order_show": "Detail Order"
+    "order_show": "Detail Order",
+    
+    "auth.failed": "Kata sandi atau Email tidak sesuai.",
+    "auth.password": "Kata sandi yang diberikan salah.",
+    "auth.throttle": "Terlalu banyak percobaan login. Silakan coba lagi dalam :seconds detik."
 }

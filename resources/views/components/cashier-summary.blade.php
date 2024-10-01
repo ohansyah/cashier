@@ -5,47 +5,55 @@
     <div @click.away="isShowSummary = false" 
          class="relative w-full max-w-2xl p-4 bg-white rounded-lg shadow-xl transition-all">
         
-        <div class="p-4">
+        <div class="px-4">
             <div class="w-full justify-center">
-                <div class="mt-3 text-center sm:mt-0 sm:text-left">
+                <div class="mt-3 text-center sm:mt-0">
                     <h3 id="modal-title" class="text-base font-semibold leading-6 text-gray-900">Cart List</h3>
-
-                    <div class="mt-2">
+                    <div class="max-h-[75vh] overflow-y-auto scroll-smooth">
                         <template x-for="item in cartItems" :key="item.id">
-                            <div class="grid grid-cols-6 grid-rows-2 gap-2 items-center py-2 border-b justify-items-stretch" x-transition>
-                                <div class="row-span-2 col-span-1">
+                            <div class="flex flex-col sm:space-x-4 sm:flex-row justify-between py-3 border-b" x-transition>
+                                
+                                <div class="flex-none">
                                     <img :src="item.imageUrl" alt="Product Image" class="object-cover rounded-lg w-16 h-16">
                                 </div>
-                                <div class="col-span-3 justify-self-start">
-                                    <p x-text="item.name" class="text-gray-700"></p>
-                                </div>
-                                <div class="col-span-3 justify-self-start flex items-center space-x-2">
-                                    <p x-text="item.priceFormated" class="text-gray-700"></p>
-                                    <button @click="decreaseQuantity(item.id)" class="px-2 py-1 text-sm font-medium text-gray-700 bg-gray-200 rounded hover:bg-gray-300">
-                                        -
-                                    </button>
-                                    <p x-text="item.qty" class="text-gray-700"></p>
-                                    <button @click="increaseQuantity(item.id)" class="px-2 py-1 text-sm font-medium text-gray-700 bg-gray-200 rounded hover:bg-gray-300">
-                                        +
-                                    </button>
-                                    <button @click="deleteItem(item.id)" class="px-2 py-1 text-sm font-medium text-red-500 bg-red-100 rounded hover:bg-red-200">
-                                        @svg('heroicon-s-trash', 'w-5 h-5')
-                                    </button>
-                                </div>
-                                <div class="row-span-2 col-span-2 justify-self-end">
-                                    <p x-text="formatCurrency(item.total)" class="font-semibold text-gray-700"></p>
+                                
+                                <div class="flex-auto">
+                                    <div class="flex flex-col text-left space-y-2">
+                                        <div class="">
+                                            <p x-text="item.name" class="text-gray-700 text-sm"></p>
+                                            <p x-text="item.priceFormated" class="text-indigo-500 font-semibold text-sm"></p>
+                                        </div>
+
+                                        <div class="flex justify-between items-center">
+                                            <!-- Quantity Controls: Stack on smaller screens, inline on larger screens -->
+                                            <div class="flex items-center space-x-2  sm:mt-0">
+                                                <button @click="decreaseQuantity(item.id)" class="px-2 py-1 text-sm font-medium text-gray-700 bg-gray-200 rounded hover:bg-gray-300">
+                                                    -
+                                                </button>
+                                                <p x-text="item.qty" class="text-gray-700 text-sm"></p>
+                                                <button @click="increaseQuantity(item.id)" class="px-2 py-1 text-sm font-medium text-gray-700 bg-gray-200 rounded hover:bg-gray-300">
+                                                    +
+                                                </button>
+                                                <button @click="deleteItem(item.id)" class="px-2 py-1 text-sm font-medium text-red-500 bg-red-100 rounded hover:bg-red-200">
+                                                    @svg('heroicon-s-trash', 'w-5 h-5')
+                                                </button>
+                                            </div>
+                                
+                                            <!-- Total Price: Centered on mobile, right-aligned on larger screens -->
+                                            <div class="mb-2">
+                                                <p x-text="formatCurrency(item.total)" class="font-semibold text-gray-700"></p>
+                                            </div>
+                                        </div>
+                                    </div>                                    
                                 </div>
                             </div>
                         </template>
-                        <div class="grid grid-cols-3 gap-3 items-center py-2 justify-items-stretch" x-transition>
-                            <div class="col-span-1">
-                                <p class="text-gray-700">Sub Total</p>
-                            </div>
-                            <div class="col-span-2 justify-self-end">
-                                <p x-text="formatCurrency(subTotal)" class="text-xl font-semibold leading-6 text-gray-900"></p>
-                            </div>
-                        </div>
-                        
+                    </div>
+
+                    <!-- Subtotal Section: Responsive -->
+                    <div class="flex justify-between items-center py-2">
+                        <p class="text-gray-700 text-sm">Sub Total</p>
+                        <p x-text="formatCurrency(subTotal)" class="text-xl font-semibold text-gray-900"></p>
                     </div>
                 </div>
             </div>
