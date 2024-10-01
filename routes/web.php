@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GeneralSettingController;
 use App\Http\Controllers\ProductController;
 use App\Livewire\Cashier;
 use App\Livewire\Category;
@@ -37,4 +38,6 @@ Route::middleware([
 
     Route::get('/order', Order::class)->name('order.index');
     Route::get('/order/{id}', OrderDetail::class)->name('order.show');
+
+    Route::get('/general-setting/clear/{key}', [GeneralSettingController::class, 'clear'])->name('general-setting.clear');
 });
