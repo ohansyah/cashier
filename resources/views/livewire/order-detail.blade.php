@@ -1,9 +1,9 @@
-<div class="py-6">
+<div class="py-0 sm:py-6">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg gap-6 p-6">
 
             <div class="flex flex-col sm:flex-row space-y-4 justify-between items-center pb-4 mb-4">
-                <div class="text-center sm:text-left ">
+                <div class="text-center sm:text-left">
                     <p class="text-gray-800 font-semibold text-md sm:text-xl">{{ $order->invoice_number }}</p>
                     <p class="text-gray-600 text-sm">{{ $order->created_at}}</p>
                     <p class="text-gray-600 text-sm">Cashier : {{ $order->user->name }}</p>
