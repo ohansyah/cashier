@@ -9,9 +9,9 @@
                     <p class="text-gray-600 text-sm">Cashier : {{ $order->user->name }}</p>
                 </div>
                 <div class="text-center sm:text-right">
-                    <p class="text-gray-800 font-semibold">Company Name</p>
-                    <p class="text-gray-600 text-sm">123 Street Address</p>
-                    <p class="text-gray-600 text-sm">City, State, Zip</p>
+                    <p class="text-gray-800 font-semibold">{{ $company['company_name'] }}</p>
+                    <p class="text-gray-600 text-sm">{{ $company['company_address_line_1'] }}</p>
+                    <p class="text-gray-600 text-sm">{{ $company['company_address_line_2'] }}</p>
                 </div>
             </div>
             <div class="mb-4">
