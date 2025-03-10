@@ -1,4 +1,9 @@
 <x-guest-layout>
+    
+    @if (config('app.debug'))
+        <x-demo-login-banner />
+    @endif
+    
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />

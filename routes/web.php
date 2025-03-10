@@ -40,4 +40,5 @@ Route::middleware([
     Route::get('/order/{id}', OrderDetail::class)->name('order.show');
 
     Route::get('/general-setting/clear/{key}', [GeneralSettingController::class, 'clear'])->name('general-setting.clear');
+    Route::get('/general-setting', [GeneralSettingController::class, 'index'])->name('general-setting.index');
 });
