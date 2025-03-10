@@ -16,4 +16,9 @@ class GeneralSettingController extends Controller
 
         return response()->json(['message' => 'Cache cleared']);
     }
+
+    public function index()
+    {
+        return view('general-setting');
+    }
 }
