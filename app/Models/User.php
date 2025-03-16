@@ -27,6 +27,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'provider',
+        'provider_id',
+        'provider_token',
+        'provider_refresh_token',
     ];
 
     /**
@@ -39,6 +43,8 @@ class User extends Authenticatable
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
+        'provider_token',
+        'provider_refresh_token',
     ];
 
     /**
