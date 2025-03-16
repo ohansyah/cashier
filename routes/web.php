@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GeneralSettingController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OauthController;
 use App\Livewire\Cashier;
 use App\Livewire\Category;
 use App\Livewire\Forms\CategoryForm;
@@ -15,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect()->route('cashier.index');
+});
+
+// Oauth
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/oauth/google', [OauthController::class, 'handleOauthGoogle'])->name('oauth.google');
+    Route::get('/oauth/google/callback', [OauthController::class, 'handleOauthGoogleCallback']);
 });
 
 Route::middleware([

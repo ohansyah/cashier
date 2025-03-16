@@ -5,4 +5,5 @@ return [
     App\Providers\FortifyServiceProvider::class,
     App\Providers\GeneralSettingServiceProvider::class,
     App\Providers\JetstreamServiceProvider::class,
+    Laravel\Socialite\SocialiteServiceProvider::class,
 ];
