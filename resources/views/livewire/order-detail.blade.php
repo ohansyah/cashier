@@ -49,5 +49,29 @@
             </div>
 
         </div>
+
+        <div class="md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2 mt-6">
+            <a href="{{ route('order.print', $order->id) }}" target="_blank"
+                class="w-full h-10 flex items-center justify-center text-sm text-indigo-500 hover:bg-indigo-500 hover:text-white py-2 px-4 rounded transition-all duration-250 border border-indigo-500">
+                <div class="px-1">
+                    <x-heroicon-o-printer class="w-5 h-5" />
+                </div>
+                <span class="max-[320px]:hidden">Print</span>
+            </a>
+            <a href="{{ route('order.pdf', $order->id) }}"
+                class="w-full h-10 flex items-center justify-center text-sm text-indigo-500 hover:bg-indigo-500 hover:text-white py-2 px-4 rounded transition-all duration-250 border border-indigo-500">
+                <div class="px-1">
+                    <x-heroicon-o-arrow-down-tray class="w-5 h-5" />
+                </div>
+                <span class="max-[320px]:hidden">Save PDF</span>
+            </a>
+            <a href="{{ route('order.image', $order->id) }}"
+                class="w-full h-10 flex items-center justify-center text-sm text-indigo-500 hover:bg-indigo-500 hover:text-white py-2 px-4 rounded transition-all duration-250 border border-indigo-500">
+                <div class="px-1">
+                    <x-heroicon-o-photo class="w-5 h-5" />
+                </div>
+                <span class="max-[320px]:hidden">Save Image</span>
+            </a>
+        </div>
     </div>
 </div>
