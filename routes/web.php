@@ -13,6 +13,7 @@ use App\Livewire\Order;
 use App\Livewire\OrderDetail;
 use App\Livewire\Product;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderExportController;
 
 Route::get('/', function () {
     return redirect()->route('cashier.index');
@@ -45,6 +46,10 @@ Route::middleware([
 
     Route::get('/order', Order::class)->name('order.index');
     Route::get('/order/{id}', OrderDetail::class)->name('order.show');
+
+    Route::get('/order/{order}/receipt/print', [OrderExportController::class, 'print'])->name('order.print');
+    Route::get('/order/{order}/receipt/pdf', [OrderExportController::class, 'downloadPdf'])->name('order.pdf');
+    Route::get('/order/{order}/receipt/image', [OrderExportController::class, 'downloadImage'])->name('order.image');
 
     Route::get('/general-setting/clear/{key}', [GeneralSettingController::class, 'clear'])->name('general-setting.clear');
     Route::get('/general-setting', [GeneralSettingController::class, 'index'])->name('general-setting.index');

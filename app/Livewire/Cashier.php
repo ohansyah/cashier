@@ -132,6 +132,6 @@ class Cashier extends Component
             return false;
         }
 
-        return true;
+        return $order->id;
     }
 }

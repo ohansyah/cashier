@@ -5,13 +5,13 @@
 [![PHP](https://img.shields.io/badge/PHP-%5E8.2-blue)](https://www.php.net/) [![Laravel](https://img.shields.io/badge/Laravel-%5E11.0-blue)](https://laravel.com/) [![Laravel Jetstream](https://img.shields.io/badge/Laravel_Jetstream-%5E5.1-blue)](https://jetstream.laravel.com/) [![Livewire](https://img.shields.io/badge/Livewire-%5E3.0-blue)](https://laravel-livewire.com/) [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-%5E3.0-blue)](https://tailwindcss.com/) [![Blade UI Kit (Heroicons)](https://img.shields.io/badge/Blade_UI_Kit_(Heroicons)-%5E2.3-blue)](https://blade-ui-kit.com) [![Blade CSS Icons](https://img.shields.io/badge/Blade_CSS_Icons-%5E1.4-blue)](https://github.com/khatabwedaa/blade-css-icons) [![Larapex Charts](https://img.shields.io/badge/Larapex_Charts-dev--master-blue)](https://github.com/ArielMejiaDev/larapex-charts) [![Laravel Livewire Tables](https://img.shields.io/badge/Laravel_Livewire_Tables-%5E3.2-blue)](https://github.com/rappasoft/laravel-livewire-tables)
 
 
-Cashier is a web-based point-of-sale (POS) system built using the Laravel TALL stack. Designed to be simple yet powerful, this system includes key features for managing sales, orders, and products, with support for multiple users. The project uses Laravel Jetstream as a starter pack, providing authentication, team management, and other essential features.
+Cashier Simple POS is a web-based point-of-sale (POS) system built using the Laravel TALL stack. Designed to be simple yet powerful, this system includes key features for managing orders and products, with support for multiple users in single store. The project uses Laravel Jetstream as a starter pack, providing authentication and other essential features.
 
    
 
 ### Features
 
-- **Multiuser**: Manage multiple users with different roles and permissions.
+- **Multiuser**: Manage multiple users.
 - **Dashboard Overview**: Get a quick glance at the system's key metrics and performance.
 - **Order Chart**: Visualize orders and sales trends over time.
 - **Checkout Page**: Streamlined checkout process for completing sales.
@@ -20,6 +20,7 @@ Cashier is a web-based point-of-sale (POS) system built using the Laravel TALL s
 - **Detail Orders**: Drill down into the details of individual orders.
 - **Master Product**: Manage the inventory of products available for sale.
 - **Master Category**: Organize products into categories for easier management.
+- **Receipt Order**: Print, Download as PDF and Image Receipts.
 
 ---
 
