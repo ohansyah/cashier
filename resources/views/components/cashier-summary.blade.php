@@ -1,3 +1,6 @@
+<div x-data="{
+    lastOrderId: null,
+}">
 <div x-cloak x-show="isShowSummary" x-transition
     class="fixed inset-0 z-10 flex items-center justify-center bg-gray-200 bg-opacity-75 transition-opacity" 
     role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -64,6 +67,7 @@
                     wire:target="checkout"
                     @click="$wire.checkout(cartItems).then((res) => {
                         if (res) {
+                            lastOrderId = res;
                             isShowSuccess = true;
                             clearCart();
                         } else {
@@ -103,6 +107,34 @@
             <h2 class="mt-4 text-xl font-semibold text-green-600">{{__('success')}}!</h2>
             <p class="mt-2 text-center text-gray-600">{{__('success_checkout')}}</p>
         </div>
+
+        <div class="md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2 mt-6">
+            <a 
+                :href="`{{ url('/order') }}/${lastOrderId}/receipt/print`" 
+                target="_blank"
+                class="w-full h-10 flex items-center justify-center text-sm text-indigo-500 hover:bg-indigo-500 hover:text-white py-2 px-4 rounded transition-all duration-250 border border-indigo-500">
+                <div class="px-1">
+                    <x-heroicon-o-printer class="w-5 h-5" />
+                </div>
+                <span class="max-[320px]:hidden">Print</span>
+            </a>
+            <a 
+                :href="`{{ url('/order') }}/${lastOrderId}/receipt/pdf`" 
+                class="w-full h-10 flex items-center justify-center text-sm text-indigo-500 hover:bg-indigo-500 hover:text-white py-2 px-4 rounded transition-all duration-250 border border-indigo-500">
+                <div class="px-1">
+                    <x-heroicon-o-arrow-down-tray class="w-5 h-5" />
+                </div>
+                <span class="max-[320px]:hidden">Save PDF</span>
+            </a>
+            <a 
+                :href="`{{ url('/order') }}/${lastOrderId}/receipt/image`" 
+                class="w-full h-10 flex items-center justify-center text-sm text-indigo-500 hover:bg-indigo-500 hover:text-white py-2 px-4 rounded transition-all duration-250 border border-indigo-500">
+                <div class="px-1">
+                    <x-heroicon-o-photo class="w-5 h-5" />
+                </div>
+                <span class="max-[320px]:hidden">Save Image</span>
+            </a>
+        </div>
     </div>
 </div>
 
@@ -118,4 +150,5 @@
             <p class="mt-2 text-center text-gray-600">{{__('failed_checkout')}}</p>
         </div>
     </div>
+</div>
 </div>
