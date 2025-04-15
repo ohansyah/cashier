@@ -20,6 +20,7 @@ Cashier Simple POS is a web-based point-of-sale (POS) system built using the Lar
 - **Detail Orders**: Drill down into the details of individual orders.
 - **Master Product**: Manage the inventory of products available for sale.
 - **Master Category**: Organize products into categories for easier management.
+- **Receipt Order**: Print, Download as PDF and Image Receipts.
 
 ---
 
