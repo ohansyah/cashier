@@ -12,8 +12,8 @@
         </div>
 
         <div class="flex-auto bg-white overflow-hidden shadow-md rounded-lg text-left p-6">
-            <p class="text-gray-600 text-sm">Order Product Today</p>
-            <span class="text-4xl text-gray-800">{{ $card['countOrderToday'] }}</span>
+            <p class="text-gray-600 text-sm">Product Sold</p>
+            <span class="text-4xl text-gray-800">{{ $card['countOrderProductToday'] }}</span>
         </div>
     </div>
 
